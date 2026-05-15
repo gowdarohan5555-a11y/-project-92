@@ -5,15 +5,16 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-val AppMaroon = Color(0xFF8E1B1B)
-val AppGold = Color(0xFFE7A126)
+// Modern Karnataka-inspired palette (Red & Gold)
+val AppPrimary = Color(0xFFB71C1C) // Vibrant Crimson Red
+val AppSecondary = Color(0xFFF9A825) // Vibrant Gold Yellow
 val Zinc = Color(0xFF71717A)
 val ZincLight = Color(0xFFE4E4E7)
 
 private val ColorScheme = lightColorScheme(
-    primary = AppMaroon,
+    primary = AppPrimary,
     onPrimary = Color.White,
-    secondary = AppGold,
+    secondary = AppSecondary,
     onSecondary = Color.Black,
     background = Color.White,
     onBackground = Color.Black,

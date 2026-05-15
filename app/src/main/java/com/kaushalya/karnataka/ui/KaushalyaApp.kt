@@ -101,7 +101,7 @@ import com.kaushalya.karnataka.model.AppUser
 import com.kaushalya.karnataka.model.PortfolioPhoto
 import com.kaushalya.karnataka.model.UserRole
 import com.kaushalya.karnataka.model.WorkerService
-import com.kaushalya.karnataka.ui.theme.AppMaroon
+import com.kaushalya.karnataka.ui.theme.AppPrimary
 import com.kaushalya.karnataka.ui.theme.Zinc
 import com.kaushalya.karnataka.ui.theme.ZincLight
 import kotlinx.coroutines.delay
@@ -181,7 +181,7 @@ private fun SplashScreen(state: AppState, navController: NavHostController) {
             Spacer(Modifier.height(32.dp))
             LinearProgressIndicator(
                 modifier = Modifier.width(200.dp),
-                color = AppMaroon,
+                color = AppPrimary,
                 trackColor = ZincLight
             )
         }
@@ -218,7 +218,7 @@ private fun LoginScreen(state: AppState, viewModel: KaushalyaViewModel, navContr
                 }
             },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = AppMaroon)
+            colors = ButtonDefaults.buttonColors(containerColor = AppPrimary)
         ) {
             Icon(Icons.AutoMirrored.Filled.Login, null)
             Spacer(Modifier.width(8.dp))
@@ -264,7 +264,7 @@ private fun RegisterScreen(state: AppState, viewModel: KaushalyaViewModel, navCo
                 }
             },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = AppMaroon)
+            colors = ButtonDefaults.buttonColors(containerColor = AppPrimary)
         ) { Text("Create account") }
         TextButton(onClick = { navController.popBackStack() }) { Text("Back to login") }
     }
@@ -374,7 +374,7 @@ private fun WorkerCard(worker: AppUser, onClick: () -> Unit) {
                 Text("${worker.category} • ${worker.location}", color = Zinc)
                 RatingStars(worker.averageRating.toInt(), readOnly = true)
             }
-            Text("${worker.reviewCount}\nreviews", color = AppMaroon, fontWeight = FontWeight.Bold)
+            Text("${worker.reviewCount}\nreviews", color = AppPrimary, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -402,7 +402,7 @@ private fun WorkerProfileScreen(worker: AppUser, state: AppState, viewModel: Kau
                     Spacer(Modifier.height(10.dp))
                     Text(worker.bio)
                     Spacer(Modifier.height(14.dp))
-                    Button(onClick = { viewModel.hire(worker.id) }, colors = ButtonDefaults.buttonColors(containerColor = AppMaroon), modifier = Modifier.fillMaxWidth()) {
+                    Button(onClick = { viewModel.hire(worker.id) }, colors = ButtonDefaults.buttonColors(containerColor = AppPrimary), modifier = Modifier.fillMaxWidth()) {
                         Icon(Icons.Default.Handyman, null)
                         Spacer(Modifier.width(8.dp))
                         Text("Hire Me")
@@ -431,7 +431,7 @@ private fun WorkerProfileScreen(worker: AppUser, state: AppState, viewModel: Kau
             RatingStars(rating, readOnly = false) { rating = it }
             OutlinedTextField(comment, { comment = it }, label = { Text("Comment") }, modifier = Modifier.fillMaxWidth(), minLines = 3)
             Spacer(Modifier.height(8.dp))
-            Button(onClick = { viewModel.addReview(worker.id, rating, comment); comment = ""; rating = 0 }, colors = ButtonDefaults.buttonColors(containerColor = AppMaroon)) {
+            Button(onClick = { viewModel.addReview(worker.id, rating, comment); comment = ""; rating = 0 }, colors = ButtonDefaults.buttonColors(containerColor = AppPrimary)) {
                 Text("Submit Review")
             }
         }
@@ -454,7 +454,7 @@ private fun WorkerDashboardScreen(state: AppState, viewModel: KaushalyaViewModel
 
     Scaffold(
         floatingActionButton = {
-            if (tab == 0) FloatingActionButton(onClick = { showAddDialog = true }, containerColor = AppMaroon) { Icon(Icons.Default.Add, null, tint = Color.White) }
+            if (tab == 0) FloatingActionButton(onClick = { showAddDialog = true }, containerColor = AppPrimary) { Icon(Icons.Default.Add, null, tint = Color.White) }
         },
         bottomBar = {
             NavigationBar {
@@ -471,7 +471,7 @@ private fun WorkerDashboardScreen(state: AppState, viewModel: KaushalyaViewModel
                     Column(Modifier.weight(1f)) {
                         Text(worker.name, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                         Text("${worker.category} • ${worker.location}", color = Zinc)
-                        Text("${requests.size} hire requests", color = AppMaroon, fontWeight = FontWeight.Bold)
+                        Text("${requests.size} hire requests", color = AppPrimary, fontWeight = FontWeight.Bold)
                     }
                     TextButton(onClick = { showRequests = true }) { Text("Requests") }
                     TextButton(onClick = pickProfileImage) { Text("Photo") }
@@ -491,7 +491,7 @@ private fun WorkerDashboardScreen(state: AppState, viewModel: KaushalyaViewModel
                     }
                 }
             } else {
-                Button(onClick = pickPortfolioImage, colors = ButtonDefaults.buttonColors(containerColor = AppMaroon), modifier = Modifier.fillMaxWidth()) {
+                Button(onClick = pickPortfolioImage, colors = ButtonDefaults.buttonColors(containerColor = AppPrimary), modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Default.Image, null)
                     Spacer(Modifier.width(8.dp))
                     Text("Upload Photo")
@@ -546,7 +546,7 @@ private fun ServiceDialog(service: WorkerService?, onDismiss: () -> Unit, onSave
                 ChipSelector(listOf("fixed", "starting"), priceType) { priceType = it }
             }
         },
-        confirmButton = { Button(onClick = { onSave(service?.id, title, category, price, priceType) }, colors = ButtonDefaults.buttonColors(containerColor = AppMaroon)) { Text("Save") } },
+        confirmButton = { Button(onClick = { onSave(service?.id, title, category, price, priceType) }, colors = ButtonDefaults.buttonColors(containerColor = AppPrimary)) { Text("Save") } },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } }
     )
 }
@@ -555,13 +555,13 @@ private fun ServiceDialog(service: WorkerService?, onDismiss: () -> Unit, onSave
 private fun ServiceCard(service: WorkerService, onEdit: (() -> Unit)? = null, onDelete: (() -> Unit)? = null) {
     Card(shape = RoundedCornerShape(12.dp), elevation = CardDefaults.cardElevation(3.dp), colors = CardDefaults.cardColors(Color.White), modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Default.Build, null, tint = AppMaroon)
+            Icon(Icons.Default.Build, null, tint = AppPrimary)
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
                 Text(service.title, fontWeight = FontWeight.Bold)
                 Text("${service.category} • ${service.priceType}", color = Zinc)
             }
-            Text(service.price, color = AppMaroon, fontWeight = FontWeight.Bold)
+            Text(service.price, color = AppPrimary, fontWeight = FontWeight.Bold)
             onEdit?.let { IconButton(onClick = it) { Icon(Icons.Default.Edit, null) } }
             onDelete?.let { IconButton(onClick = it) { Icon(Icons.Default.Delete, null) } }
         }
@@ -584,7 +584,7 @@ private fun RatingStars(rating: Int, readOnly: Boolean, onRating: (Int) -> Unit 
             Icon(
                 imageVector = if (index <= rating) Icons.Filled.Star else Icons.Outlined.StarBorder,
                 contentDescription = null,
-                tint = AppMaroon,
+                tint = AppPrimary,
                 modifier = Modifier.size(22.dp).clickable(enabled = !readOnly) { onRating(index) }
             )
         }
@@ -630,7 +630,7 @@ private fun Avatar(worker: AppUser, size: Int = 56) {
         )
     } else {
         Box(
-            modifier = Modifier.size(size.dp).clip(CircleShape).background(AppMaroon),
+            modifier = Modifier.size(size.dp).clip(CircleShape).background(AppPrimary),
             contentAlignment = Alignment.Center
         ) {
             Text(worker.name.split(" ").mapNotNull { it.firstOrNull()?.toString() }.take(2).joinToString(""), color = Color.White, fontWeight = FontWeight.Bold)
